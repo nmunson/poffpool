@@ -51,8 +51,14 @@ describe Entrant do
     end
   end
 
-  it "should respond to players"
+  it "should respond to players" do
+    @entrant = Entrant.create!(@attr)
+    @entrant.should respond_to(:players)
+  end
 
-  it "should respond to picks"
+  it "should respond to picks" do
+    @entrant = Entrant.create!(@attr)
+    @entrant.should respond_to(:picks)
+  end
 
 end
