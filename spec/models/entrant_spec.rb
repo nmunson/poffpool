@@ -19,7 +19,11 @@ describe Entrant do
     no_name_entrant.should_not be_valid
   end
 
-  it "should reject duplicate names"
+  it "should reject duplicate names" do
+    Entrant.create!(@attr)
+    duplicate_name_entrant = Entrant.new(@attr)
+    duplicate_name_entrant.should_not be_valid
+  end
 
   it "should require an email address"
 
