@@ -1,0 +1,4 @@
+# This file contains the ENV vars necessary to run the app locally.  
+# Copy and rename without the trailing ".example" to use properly.
+
+ENV['SEASON'] = '20112012'
