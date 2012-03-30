@@ -4,8 +4,8 @@ describe Team do
 
   before(:each) do
     @attr = {
-      :name => "Toronto Maple Leafs",
-      :shortname => "leafs"
+      :name => "New Team",
+      :shortname => "team"
     }
   end
 
