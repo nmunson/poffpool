@@ -1,3 +1,5 @@
 Populate teams with:
 
     rake nhl:populate_teams
+
+Set your season using the environment variable SEASON, found in config/environment_vars.rb
