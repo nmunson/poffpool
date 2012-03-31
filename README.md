@@ -8,9 +8,7 @@ specific set of rules.
 1. Set your environment variables found in config/environment_vars.rb.
 
 2. Populate all teams with:
-
     rake nhl:populate_teams
 
 3. Once the regular season has completed, run the rake task to populate players:
-
     rake nhl:populate_players
