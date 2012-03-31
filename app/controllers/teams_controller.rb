@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   respond_to :json
 
   def index
-    @teams = Team.all
+    @teams = Team.all.select{|team| team.players.count > 0}
     respond_with(@teams, :except => [:created_at, :updated_at])
   end
 
