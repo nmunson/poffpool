@@ -17,7 +17,7 @@ namespace :nhl do
       goalie_names = []
       goalie_list.sort_by{|h| h[:wins]}.each do |goalie|
         goalie_season_points += (goalie["wins"] * Integer(ENV['WIN_MULTIPLIER'])) + 
-          (goalie["shutouts"] * Integer(ENV['SHUTOUT_MULTIPLIER'])) + goalie["goals"] + goalie["assits"]
+          (goalie["shutouts"] * Integer(ENV['SHUTOUT_MULTIPLIER'])) + goalie["goals"] + goalie["assists"]
         goalie_names << goalie["name"] 
       end
       @team.players.create!(:name => goalie_names.take(2).join("/"), :season_points => goalie_season_points, :goalie => true)

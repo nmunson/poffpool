@@ -1,5 +1,11 @@
-Populate teams with:
+Populate all teams with:
 
     rake nhl:populate_teams
 
 Set your environment variables found in config/environment_vars.rb.
+
+Once the regular season has completed, run the rake task to populate players:
+
+    rake nhl:populate_players
+
+
