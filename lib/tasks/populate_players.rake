@@ -1,11 +1,5 @@
 namespace :nhl do
   task :populate_players => :environment do
-    # use ENV var pointing to nhl api
-    # use ENV var that has list of shortnames of teams in playoffs
-    # for each team in the list of playoff teams
-      # ask the nhl api for details on that team, in this regular season
-      # save top 6 players, top 2 goalies
-
     ENV['PLAYOFF_TEAMS'].split(',').each do |team|
       @team = Team.find_by_shortname(team)
       nhl = NHL.new(ENV['SEASON'])
