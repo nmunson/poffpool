@@ -23,7 +23,7 @@ end
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
-  gem 'factory_girl_rails'
+  gem "json_spec"
 end
 
 gem 'jquery-rails'
