@@ -14,8 +14,19 @@ namespace :nhl do
       goalie_list = resp.parsed_response.select{|g| g["position"] == "G"}
 
       player_list.sort_by{|h| h[:points]}.take(6).each do |player|
-        @team.players.create(:name => player["name"], :season_points => player["points"])
+        @team.players.create!(:name => player["name"], :season_points => player["points"], :goalie => false)
       end
+
+      # Goalies are referenced by the top two goalies on the team, but their points count always comes from
+      # any goalie playing for the team.  Wins and shutouts count for extra points based on the multipliers.
+      goalie_season_points = 0
+      goalie_names = []
+      goalie_list.sort_by{|h| h[:wins]}.each do |goalie|
+        goalie_season_points += (goalie["wins"] * ENV['WIN_MULTIPLIER']) + 
+          (goalie["shutouts"] * ENV['SHUTOUT_MULTIPLIER']) + goalie["goals"] + goalie["assits"]
+        goalie_names << goalie["name"] 
+      end
+      @team.players.create!(:name => goalie_names.take(2).join("/"), :season_points => goalie_season_points, :goalie => true)
     end
   end
 end

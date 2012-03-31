@@ -4,3 +4,5 @@
 ENV['SEASON'] = '20112012'
 ENV['PLAYOFF_TEAMS'] = 'rangers,bruins,panthers,penguins,flyers,devils,senators,sabres,blues,canucks,stars,redwings,predators,blackhawks,coyotes,kings'
 ENV['NHL_API'] = 'http://localhost:8081'
+ENV['WIN_MULTIPLIER'] = 2
+ENV['SHUTOUT_MULTIPLIER'] = 2
