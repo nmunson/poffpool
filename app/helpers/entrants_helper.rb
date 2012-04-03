@@ -1,0 +1,2 @@
+module EntrantsHelper
+end

@@ -1,5 +1,13 @@
 class Entrant < ActiveRecord::Base
 
+  acts_as_api
+
+  api_accessible :entrants do |template|
+    template.add :id
+    template.add :name
+    template.add :points
+  end
+
   has_many :picks
   has_many :players, :through => :picks
 
@@ -11,5 +19,13 @@ class Entrant < ActiveRecord::Base
 
   validates :email, :presence => true,
                     :format => { :with => email_regex }
+
+  def self.by_season_points
+    all.sort_by{ |entrant| -entrant.players.sum('season_points') }
+  end
+
+  def points
+    self.players.sum('season_points')
+  end
 
 end
