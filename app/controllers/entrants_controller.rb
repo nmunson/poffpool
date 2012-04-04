@@ -7,4 +7,18 @@ class EntrantsController < ApplicationController
     end
   end
 
+  def new
+    @entrant = Entrant.new
+  end
+
+  def create
+    @entrant = Entrant.new(params[:entrant])
+    if @entrant.save
+      flash[:success] = "Congratulations, you have been successfully entered into the pool.  Check back shortly."
+      redirect_to @entrant
+    else
+      render 'new'
+    end
+  end
+
 end

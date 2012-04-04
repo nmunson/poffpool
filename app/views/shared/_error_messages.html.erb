@@ -1,0 +1,10 @@
+<% if @entrant.errors.any? %>  
+<div>  
+  <h2><%= pluralize(@entrant.errors.count, "error") %> prohibited this record from being saved:</h2>  
+  <ul>  
+  <% @entrant.errors.full_messages.each do |msg| %>  
+    <li><%= msg %></li>  
+  <% end %>  
+  </ul>  
+</div>  
+<% end %>  

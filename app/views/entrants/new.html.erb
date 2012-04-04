@@ -1,0 +1,18 @@
+<%= form_for(@entrant, :validate => true) do |f| %>
+<%= render 'shared/error_messages', :object => @entrant %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :company %>
+    <%= f.text_field :company %>
+  </div>
+  <div>
+    <%= f.submit "Register" %>
+  </div>  
+<% end %>
