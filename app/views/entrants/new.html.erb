@@ -1,4 +1,4 @@
-<%= form_for(@entrant, :validate => true) do |f| %>
+<%= form_for @entrant do |f| %>
 <%= render 'shared/error_messages', :object => @entrant %>
   <div>
     <%= f.label :name %>
@@ -12,6 +12,15 @@
     <%= f.label :company %>
     <%= f.text_field :company %>
   </div>
+  <%= field_set_tag 'Player Selection' do %>
+    <% Team.all.select{|team| team.players.count > 0}.each do |team| %>
+      <div><%= team.name %></div>
+      <% team.players.each do |player| %>
+        <%= check_box_tag :player_ids, player.id, false, :name => 'entrant[player_ids][]' %>
+        <%= label_tag :player_ids, player.name + " (#{player.season_points})" %>
+      <% end %>
+    <% end %>
+  <% end %>
   <div>
     <%= f.submit "Register" %>
   </div>  
