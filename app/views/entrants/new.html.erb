@@ -13,14 +13,36 @@
     <%= f.text_field :company %>
   </div>
   <%= field_set_tag 'Player Selection' do %>
-    <% Team.all.select{|team| team.players.count > 0}.each do |team| %>
-      <div><%= team.name %></div>
-      <% team.players.each do |player| %>
-        <%= check_box_tag :player_ids, player.id, false, :name => 'entrant[player_ids][]' %>
-        <%= label_tag :player_ids, player.name + " (#{player.season_points})" %>
+    <table id="player_selection">
+      <tr>
+        <th>Team</th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th><th>Column 5</th>
+        <th>Mulligan Man</th><th>Goalie</th>
+      </tr>
+      <% Team.all.select{|team| team.players.count > 0}.sort_by{|team| team["name"]}.each do |team| %>
+        <tr>
+          <td style="white-space: nowrap"><strong><%= team.name %></strong></td>
+          <% team.players.each_with_index do |player, index| %>
+            <td style="white-space: nowrap">
+              <%= check_box_tag :player_ids, player.id, false, :name => 'entrant[player_ids][]', 
+              'data-team' => team.name, 'data-type' => player_type(index) %>
+              <%= label_tag :player_ids, player.name + " (#{player.season_points})" %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    <% end %>
+    </table>
   <% end %>
+  <p>Requirements:</p>
+  <ul id="requirements">
+    <li id="onePlayerPerTeam">One player per team team</li>
+    <li>Three players from column 1</li>
+    <li>Three players from column 2</li>
+    <li>Three players from column 3</li>
+    <li>Three players from column 4</li>
+    <li>Three players from column 5</li>
+    <li>One goalie</li>
+    <li>One mulligan man (any team except where goalie chosen)</li>
+  </ul>
   <div>
     <%= f.submit "Register" %>
   </div>  
