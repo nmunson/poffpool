@@ -13,6 +13,13 @@ function validateEntries() {
   });
   checkOneGoalie();
   checkMulliganMan();
+  enableSubmit();
+}
+
+function enableSubmit() {
+  if ($('#requirements li.success').length == $('#requirements li').length) {
+    $('input[type="submit"]').removeAttr('disabled');
+  }
 }
 
 function checkOnePlayerPerTeam() {
