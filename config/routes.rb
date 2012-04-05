@@ -1,7 +1,11 @@
 Poffpool::Application.routes.draw do
 
-  resources :entrants, :only => [:new, :index, :create]
+  resources :pages, :only => :index
+  resources :players, :only => :show
+  resources :entrants, :only => [:new, :index, :create, :show]
   resources :teams, :only => [:index, :show]
+
+  root :to => 'pages#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,6 @@
+<%= @team.name %>
+<ul>
+<% @team.players.each do |player| %>
+  <li><%= link_to player.name + " (" + player.season_points.to_s + ")", player %></li>
+<% end %>
+</ul>

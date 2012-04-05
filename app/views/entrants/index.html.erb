@@ -1,2 +1,5 @@
-<h1>Entrants#index</h1>
-<p>Find me in app/views/entrants/index.html.erb</p>
+<ol>
+  <% @entrants.each do |entrant| %>
+    <li><%= entrant.name %> (<%= entrant.points %>)</li>
+  <% end %>
+</ol>

@@ -1,0 +1,7 @@
+<h1><%= @player.name %></h1>
+
+<ul>
+  <% @player.entrants.each do |entrant| %>
+    <li><%= link_to entrant.name, entrant %></li>
+  <% end %>
+</ul>
