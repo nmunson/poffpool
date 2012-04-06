@@ -16,11 +16,16 @@
       </thead>
       <% @team.players.each do |player| %>
         <tr>
-          <td><%= player.name %></td>
+          <td><%= link_to player.name, player %></td>
           <td><%= player.goals.to_s %></td>
           <td><%= player.assists.to_s %></td>
-          <td><%= player.wins.to_s %></td>
-          <td><%= player.shutouts.to_s %></td>
+          <% if player.goalie? %>
+            <td><%= player.wins.to_s %></td>
+            <td><%= player.shutouts.to_s %></td>
+          <% else %>
+            <td>&dash;</td>
+            <td>&dash;</td>
+          <% end %>
           <td><%= player.points.to_s %></td>
         </tr>
       <% end %>

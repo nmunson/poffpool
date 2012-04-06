@@ -14,7 +14,7 @@
       <% @entrants.each_with_index do |entrant, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= entrant.name %></td>
+          <td><%= link_to entrant.name, entrant %></td>
           <td><%= entrant.points %></td>
         </tr>
       <% end %>

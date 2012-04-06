@@ -1,7 +1,41 @@
-<h1><%= @entrant.name %></h1>
-
-<ul>
-  <% @entrant.players.each do |player| %>
-    <li><%= link_to player.name, player %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="span8">
+    <h1 class="page-header"><%= @entrant.name %></h1>
+  </div>
+  <div class="span4">
+    <h1 class="page-header">Points: <%= @entrant.points %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <th>Team</th>
+        <th>Player</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Wins</th>
+        <th>Shutouts</th>
+        <th>Total</th>
+      </thead>
+      <% @entrant.players.sort_by{|p| p.team.name}.each do |player| %>
+        <tr>
+          <td><%= link_to player.team.name, player.team %></td>
+          <td><%= link_to player.name, player %></td>
+          <td><%= player.goals.to_s %></td>
+          <td><%= player.assists.to_s %></td>
+          <% if player.goalie? %>
+            <td><%= player.wins.to_s %></td>
+            <td><%= player.shutouts.to_s %></td>
+          <% else %>
+            <td>&dash;</td>
+            <td>&dash;</td>
+          <% end %>
+          <td><%= player.points.to_s %></td>
+        </tr>
+      <% end %>
+    </table>     
+    <hr />
+    <%= link_to "Back", entrants_path, :class => 'btn' %>
+  </div>
+</div>

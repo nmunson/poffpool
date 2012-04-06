@@ -1,7 +1,20 @@
-<h1><%= @player.name %></h1>
-
-<ul>
-  <% @player.entrants.each do |entrant| %>
-    <li><%= link_to entrant.name, entrant %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="span12">
+    <h1 class="page-header"><%= @player.name %> of the <%= @player.team.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <% if @player.entrants.count > 0 %>
+    <ul>
+      <% @player.entrants.each do |entrant| %>
+        <li><%= link_to entrant.name, entrant %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No one has picked this player.</p>
+    <% end %>
+    <hr />
+    <%= link_to "Back", team_path(@player.team), :class => 'btn' %>
+  </div>
+</div>
