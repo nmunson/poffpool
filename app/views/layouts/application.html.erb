@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Poffpool</title>
+  <title>NHL Playoff Pool 2012</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to "NHL Playoff Pool 2012", root_url, :class => 'brand' %>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <% if controller?("pages") && action?("index") %>
+              <li class="active"><%= link_to "Home", root_url %></li>
+            <% else %>
+              <li><%= link_to "Home", root_url %></li>
+            <% end %>
+            <% if controller?("entrants") && action?("new") %>
+              <li class="active"><%= link_to "Submit Entry", new_entrant_path %></li>
+            <% else %>
+              <li><%= link_to "Submit Entry", new_entrant_path %></li>
+            <% end %>
+            <% if controller?("entrants") && action?("index") %>
+              <li class="active"><%= link_to "Rankings", entrants_path %></li>
+            <% else %>
+              <li><%= link_to "Rankings", entrants_path %></li>
+            <% end %>
+            <% if controller?("teams") && action?("index", "show") %>
+              <li class="active"><%= link_to "Players", teams_path %></li>
+            <% else %>
+              <li><%= link_to "Players", teams_path %></li>
+            <% end %>
+            <% if controller?("pages") && action?("prizes") %>
+              <li class="active"><%= link_to "Prizes", prizes_path %></li>
+            <% else %>
+              <li><%= link_to "Prizes", prizes_path %></li>
+            <% end %>
+            <% if controller?("pages") && action?("contact") %>
+              <li class="active"><%= link_to "Contact", contact_path %></li>
+            <% else %> 
+              <li><%= link_to "Contact", contact_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+  <hr />
+
+  <footer>
+    <p>&copy; Nicholas Munson 2012, <a href="#">fork and contribute on Github</a></p>
+  </footer>
+</div>
 
 </body>
 </html>

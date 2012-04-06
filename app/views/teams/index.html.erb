@@ -1,5 +1,18 @@
-<ul>
-  <% @teams.each do |team| %>
-    <li><%= link_to team.name, team %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="span12">
+    <h1 class="page-header">Players</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+    <ul>
+      <% @teams.each do |team| %>
+        <li><%= link_to team.name, team %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span4">
+    <h3>Teams &amp; Players</h3>
+    <p>Choose a team to see the players and their respective points.</p>
+  </div>
+</div>

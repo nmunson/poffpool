@@ -1,49 +1,71 @@
-<%= form_for @entrant do |f| %>
-<%= render 'shared/error_messages', :object => @entrant %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :company %>
-    <%= f.text_field :company %>
-  </div>
-  <%= field_set_tag 'Player Selection' do %>
-    <table id="player_selection">
-      <tr>
-        <th>Team</th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th><th>Column 5</th>
-        <th>Mulligan Man</th><th>Goalie</th>
-      </tr>
-      <% Team.all.select{|team| team.players.count > 0}.sort_by{|team| team["name"]}.each do |team| %>
-        <tr>
-          <td style="white-space: nowrap"><strong><%= team.name %></strong></td>
-          <% team.players.each_with_index do |player, index| %>
-            <td style="white-space: nowrap">
-              <%= check_box_tag :player_ids, player.id, false, :name => 'entrant[player_ids][]', 
-              'data-team' => team.name, 'data-type' => player_type(index) %>
-              <%= label_tag :player_ids, player.name + " (#{player.season_points})" %>
-            </td>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <%= form_for @entrant, :html => { :class => "form-horizontal" } do |f| %>
+        <fieldset>
+          <legend>Submit Entry</legend>
+          <div class="control-group">
+            <%= f.label :name, :class => 'control-label' %>
+            <div class="controls">
+              <%= f.text_field :name, :class => 'input-xlarge' %>
+              <p class="help-block">Will be displayed publicly in the rankings list.</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :email, :class => 'control-label' %>
+            <div class="controls">
+              <%= f.text_field :email, :class => 'input-xlarge' %>
+              <p class="help-block">Never publicly displayed or shared.</p>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.label :company, :class => 'control-label' %>
+            <div class="controls">
+              <%= f.text_field :company, :class => 'input-xlarge' %>
+              <p class="help-block">Never publicly displayed or shared.</p>
+            </div>
+          </div>
+        <table class="table table-striped" id="player_selection">
+          <thead>
+            <th>Team</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+            <th>Column 5</th>
+            <th>Mulligan Man</th>
+            <th>Goalie</th>
+          </thead>
+          <% Team.all.select{|team| team.players.count > 0}.sort_by{|team| team["name"]}.each do |team| %>
+            <tr>
+              <td><strong><%= team.name %></strong></td>
+              <% team.players.each_with_index do |player, index| %>
+                <td>
+                  <label class="checkbox"><%= check_box_tag :player_ids, player.id, false, :name => 'entrant[player_ids][]', 
+                  'data-team' => team.name, 'data-type' => player_type(index) %><%= player.name + " (#{player.season_points})" %></label>
+                </td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
+        </table>
+        <h3 class="page-header">Requirements</h3>
+        <ul id="requirements">
+          <li id="one-player-per-team">One player per team team</li>
+          <li id="three-players-per-col1">Three players from column 1</li>
+          <li id="three-players-per-col2">Three players from column 2</li>
+          <li id="three-players-per-col3">Three players from column 3</li>
+          <li id="three-players-per-col4">Three players from column 4</li>
+          <li id="three-players-per-col5">Three players from column 5</li>
+          <li id="one-goalie">One goalie</li>
+          <li id="one-mulligan-man">One mulligan man (any team except where goalie chosen)</li>
+        </ul>
+        <!--<div class="progress progress-striped active" style="width:300px;">
+          <div id="progress" class="bar" style="width:0%;"></div>
+        </div>-->
+        <%= f.submit "Submit Entry", :disabled => true, :class => 'btn btn-primary btn-large' %>
+        </fieldset>
       <% end %>
-    </table>
-  <% end %>
-  <p>Requirements:</p>
-  <ul id="requirements">
-    <li id="one-player-per-team">One player per team team</li>
-    <li id="three-players-per-col1">Three players from column 1</li>
-    <li id="three-players-per-col2">Three players from column 2</li>
-    <li id="three-players-per-col3">Three players from column 3</li>
-    <li id="three-players-per-col4">Three players from column 4</li>
-    <li id="three-players-per-col5">Three players from column 5</li>
-    <li id="one-goalie">One goalie</li>
-    <li id="one-mulligan-man">One mulligan man (any team except where goalie chosen)</li>
-  </ul>
-  <div>
-    <%= f.submit "Register", :disabled => true %>
-  </div>  
-<% end %>
+    </div>
+  </div>

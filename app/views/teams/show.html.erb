@@ -1,6 +1,30 @@
-<%= @team.name %>
-<ul>
-<% @team.players.each do |player| %>
-  <li><%= link_to player.name + " (G:#{player.goals.to_s} A:#{player.assists.to_s})", player %></li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="span12">
+    <h1 class="page-header"><%= @team.name %> - Statistics</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <th>Player</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Wins</th>
+        <th>Shutouts</th>
+        <th>Total</th>
+      </thead>
+      <% @team.players.each do |player| %>
+        <tr>
+          <td><%= player.name %></td>
+          <td><%= player.goals.to_s %></td>
+          <td><%= player.assists.to_s %></td>
+          <td><%= player.wins.to_s %></td>
+          <td><%= player.shutouts.to_s %></td>
+          <td><%= player.points.to_s %></td>
+        </tr>
+      <% end %>
+    </table> 
+    <%= link_to "Back", teams_path, :class => 'btn' %>         
+  </div>
+</div>

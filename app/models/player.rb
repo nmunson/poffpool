@@ -18,4 +18,8 @@ class Player < ActiveRecord::Base
 
   validates :team_id, :presence => true
 
+  def points
+    goals + assists + shutouts * Integer(ENV['SHUTOUT_MULTIPLIER']) + wins * Integer(ENV['WIN_MULTIPLIER'])
+  end
+
 end

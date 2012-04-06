@@ -25,7 +25,7 @@ class Entrant < ActiveRecord::Base
   end
 
   def points
-    self.players.sum('points') + self.players.sum('assists') + 
+    self.players.sum('goals') + self.players.sum('assists') + 
       self.players.sum('shutouts') * Integer(ENV['SHUTOUT_MULTIPLIER']) + 
       self.players.sum('wins') * Integer(ENV['WIN_MULTIPLIER'])
   end

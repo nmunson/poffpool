@@ -1,7 +1,20 @@
-<h1>poffpool</h1>
+<div class="hero-unit">
+  <h1>Welcome!</h1>
+  <p>The pool will follow the same format as in previous years. The on-line submission form will validate that you are following the correct selection criteria. Once all entries have been received and properly validated the site will switch over to provide regular status updates, standings, etc., following each of the playoff games. </p>
+  <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
+</div>
 
-<ul>
-  <li><%= link_to "Teams", teams_path %></li>
-  <li><%= link_to "Rankings", entrants_path %></li>
-  <li><%= link_to "Submit Entry", new_entrant_path %></li>
-</ul>
+<div class="row">
+  <div class="span4">
+    <h2>Prizes</h2>
+     <p>Prizes will be determined based on the amount of entrants.  Once all entries are finalized the prize amounts will be announced here on the site.</p>
+  </div>
+  <div class="span4">
+    <h2>Updates</h2>
+     <p>The site will pull updates from NHL.com every night at 4 AM for all players.  If you see any inconsistencies with points, please <%= link_to "contact me", contact_path %>.</p>
+ </div>
+  <div class="span4">
+    <h2>Entries Close</h2>
+    <p>Your submission must be in by Wednesday, April 11 2012.  After that, entries will be verified and the pool will begin.  Please make sure you have a means of submitting the entry fee before entering.</p>
+  </div>
+</div>

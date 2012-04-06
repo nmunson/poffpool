@@ -1,5 +1,27 @@
-<ol>
-  <% @entrants.each do |entrant| %>
-    <li><%= entrant.name %> (<%= entrant.points %>)</li>
-  <% end %>
-</ol>
+<div class="row">
+  <div class="span12">
+    <h1 class="page-header">Rankings</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+    <table class="table table-striped">
+      <thead>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Points</th>
+      </thead>
+      <% @entrants.each_with_index do |entrant, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= entrant.name %></td>
+          <td><%= entrant.points %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="span4">
+    <h3>Updates</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales suscipit neque ac varius. Aenean posuere, nisi eget commodo rhoncus, dui odio interdum ipsum, id consequat nulla leo non quam. Ut vitae enim ut purus egestas scelerisque sed ut massa. Morbi viverra, dui a lobortis euismod, nisl risus ultricies ante, in molestie velit magna nec neque.</p>
+  </div>
+</div>
