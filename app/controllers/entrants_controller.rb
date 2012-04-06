@@ -15,7 +15,7 @@ class EntrantsController < ApplicationController
   def create
     @entrant = Entrant.new(params[:entrant])
     if @entrant.save
-      flash[:success] = "Congratulations, you have been successfully entered into the pool.  Check back shortly."
+      flash[:success] = "Congratulations, you have been successfully entered into the pool.  Check back shortly when the submission period has ended for site updates."
       redirect_to @entrant
     else
       render 'new'

@@ -1,10 +1,14 @@
 <% if @entrant.errors.any? %>  
-<div>  
-  <h2><%= pluralize(@entrant.errors.count, "error") %> prohibited this record from being saved:</h2>  
-  <ul>  
-  <% @entrant.errors.full_messages.each do |msg| %>  
-    <li><%= msg %></li>  
-  <% end %>  
-  </ul>  
-</div>  
-<% end %>  
+  <div class="row">
+    <div class="span12">
+      <div class="alert alert-error">
+        <p>Your entry was not submitted successfully, please fix the following errors:</p>
+        <ul>  
+          <% @entrant.errors.full_messages.each do |msg| %>  
+            <li><%= msg %></li>  
+          <% end %>  
+        </ul>  
+      </div>
+    </div>
+  </div>
+<% end %>
