@@ -1,6 +1,7 @@
 class EntrantsController < ApplicationController
 
   skip_before_filter :entry_mode_check, :only => [:new, :create]
+  before_filter :prevent_late_submissions, :only => [:new, :create]
 
   def index
     @entrants = Entrant.by_season_points
@@ -26,6 +27,12 @@ class EntrantsController < ApplicationController
 
   def show
     @entrant = Entrant.find(params[:id])
+  end
+
+  private
+
+  def prevent_late_submissions
+    redirect_to root_url if Time.parse(ENV['SUBMISSION_DEADLINE']) < Time.now
   end
 
 end
