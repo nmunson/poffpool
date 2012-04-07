@@ -7,7 +7,11 @@ class NHL
   end
 
   def player_stats(team, playoffs=false)
-    self.class.get("/#{team}/#{@season}")
+    if playoffs
+      self.class.get("/#{team}/#{@season}/playoffs")
+    else
+      self.class.get("/#{team}/#{@season}")
+    end
   end
 
 end
