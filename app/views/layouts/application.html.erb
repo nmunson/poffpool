@@ -24,30 +24,33 @@
             <% else %>
               <li><%= link_to "Home", root_url %></li>
             <% end %>
-            <% if controller?("entrants") && action?("new") %>
-              <li class="active"><%= link_to "Submit Entry", new_entrant_path %></li>
+            <% if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now %>
+              <% if controller?("entrants") && action?("new") %>
+                <li class="active"><%= link_to "Submit Entry", new_entrant_path %></li>
+              <% else %>
+                <li><%= link_to "Submit Entry", new_entrant_path %></li>
+              <% end %>
             <% else %>
-              <li><%= link_to "Submit Entry", new_entrant_path %></li>
-            <% end %>
-            <% if controller?("entrants") && action?("index", "show") %>
-              <li class="active"><%= link_to "Rankings", entrants_path %></li>
-            <% else %>
-              <li><%= link_to "Rankings", entrants_path %></li>
-            <% end %>
-            <% if controller?("teams") && action?("index", "show") or controller?("players") && action?("show") %>
-              <li class="active"><%= link_to "Players", teams_path %></li>
-            <% else %>
-              <li><%= link_to "Players", teams_path %></li>
-            <% end %>
-            <% if controller?("pages") && action?("prizes") %>
-              <li class="active"><%= link_to "Prizes", prizes_path %></li>
-            <% else %>
-              <li><%= link_to "Prizes", prizes_path %></li>
-            <% end %>
-            <% if controller?("pages") && action?("contact") %>
-              <li class="active"><%= link_to "Contact", contact_path %></li>
-            <% else %> 
-              <li><%= link_to "Contact", contact_path %></li>
+              <% if controller?("entrants") && action?("index", "show") %>
+                <li class="active"><%= link_to "Rankings", entrants_path %></li>
+              <% else %>
+                <li><%= link_to "Rankings", entrants_path %></li>
+              <% end %>
+              <% if controller?("teams") && action?("index", "show") or controller?("players") && action?("show") %>
+                <li class="active"><%= link_to "Players", teams_path %></li>
+              <% else %>
+                <li><%= link_to "Players", teams_path %></li>
+              <% end %>
+              <% if controller?("pages") && action?("prizes") %>
+                <li class="active"><%= link_to "Prizes", prizes_path %></li>
+              <% else %>
+                <li><%= link_to "Prizes", prizes_path %></li>
+              <% end %>
+              <% if controller?("pages") && action?("contact") %>
+                <li class="active"><%= link_to "Contact", contact_path %></li>
+              <% else %> 
+                <li><%= link_to "Contact", contact_path %></li>
+              <% end %>
             <% end %>
           </ul>
         </div>

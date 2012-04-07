@@ -1,5 +1,7 @@
 class EntrantsController < ApplicationController
 
+  skip_before_filter :entry_mode_check, :only => [:new, :create]
+
   def index
     @entrants = Entrant.by_season_points
     respond_to do |format|
@@ -15,8 +17,8 @@ class EntrantsController < ApplicationController
   def create
     @entrant = Entrant.new(params[:entrant])
     if @entrant.save
-      flash[:success] = "Congratulations, you have been successfully entered into the pool.  Check back shortly when the submission period has ended for site updates."
-      redirect_to @entrant
+      flash[:success] = "Congratulations, you have been successfully entered into the pool.  Check back shortly when the submission period has ended for site updates.  Your picks were: " + @entrant.players.collect{|k| k["name"]}.join(", ") + "."
+      redirect_to root_url
     else
       render 'new'
     end
