@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # can users submit entries, or is the entry period closed
   def entry_mode_check
-    return if Rails.env.development?
+    return if ENV['DEBUG'] == 'true'
     if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now
       redirect_to root_url
     end

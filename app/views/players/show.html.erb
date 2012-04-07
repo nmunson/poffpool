@@ -15,6 +15,6 @@
       <p>No one has picked this player.</p>
     <% end %>
     <hr />
-    <%= link_to "Back", team_path(@player.team), :class => 'btn' %>
+    <%= link_to_function "Back", "history.back()", :class => 'btn' %>
   </div>
 </div>
