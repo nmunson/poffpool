@@ -6,3 +6,5 @@ ENV['PLAYOFF_TEAMS'] = 'rangers,bruins,panthers,penguins,flyers,devils,senators,
 ENV['NHL_API'] = 'http://localhost:8081'
 ENV['WIN_MULTIPLIER'] = 2
 ENV['SHUTOUT_MULTIPLIER'] = 2
+ENV['SUBMISSION_DEADLINE'] = '2012-04-11 18:00:00'
+ENV['DEBUG'] = 'true'
