@@ -14,3 +14,7 @@ specific set of rules.
 3. Once the regular season has completed, run the rake task to populate players:
 
         rake nhl:populate_players
+
+4. Set up a scheduled task to update the statistics regulary, and which will call the following rake task:
+
+        rake nhl:update_stats
