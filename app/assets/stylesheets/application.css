@@ -24,3 +24,7 @@ td {
 input, textarea, select, .uneditable-input {
   height: inherit;
 }
+
+.hero-unit h1 {
+  padding-bottom:10px;
+}
