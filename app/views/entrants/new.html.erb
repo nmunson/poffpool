@@ -2,7 +2,9 @@
   <div class="row">
     <div class="span8">
       <h1 class="page-header">Submit Entry</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sodales suscipit neque ac varius. Aenean posuere, nisi eget commodo rhoncus, dui odio interdum ipsum, id consequat nulla leo non quam. Ut vitae enim ut purus egestas scelerisque sed ut massa. Morbi viverra, dui a lobortis euismod, nisl risus ultricies ante, in molestie velit magna nec neque.</p>
+      <p>To submit, follow the requirements guide on the right hand side of this page.  As you complete requirements, they will be marked in green.  Once all requirements are satisfied, you will be able to submit your entry.  In the pool, players earn one point per goal and one point per assist.  Goaltenders by team earn 2 points for the win and two points per shutout, plus one point per goal or assist.</p>
+      <p>For your goalie pick, any goalie that plays for that team during the playoffs will have their respective points counted for your picks.  The mulligan man column is the only pick that breaks the "one player per team" rule.  You can pick this player from any team that you'd like, except where you have chosen the goalie.</p>
+      <p>For a more exhaustive submission guideline, please <%= link_to "read this guide", guide_path %>.</p>
     </div>
     <div class="span4">
       <h3 class="page-header">Requirements</h3>
@@ -55,21 +57,21 @@
             <%= f.label :name, :class => 'control-label' %>
             <div class="controls">
               <%= f.text_field :name, :class => 'input-xlarge' %>
-              <p class="help-block">Will be displayed publicly in the rankings list.</p>
+              <p class="help-block">Displayed publicly in the rankings list.</p>
             </div>
           </div>
           <div class="control-group">
             <%= f.label :email, :class => 'control-label' %>
             <div class="controls">
               <%= f.text_field :email, :class => 'input-xlarge' %>
-              <p class="help-block">Never publicly displayed or shared.</p>
+              <p class="help-block">To contact you if necessary, never publicly displayed or shared.</p>
             </div>
           </div>
           <div class="control-group">
             <%= f.label :company, :class => 'control-label' %>
             <div class="controls">
               <%= f.text_field :company, :class => 'input-xlarge' %>
-              <p class="help-block">Never publicly displayed or shared.</p>
+              <p class="help-block">For reporting purposes only, i.e. to see who is doing the best from a certain company.  Publicly displayed.</p>
             </div>
           </div>
           <div class="control-group">

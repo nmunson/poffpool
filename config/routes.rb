@@ -2,6 +2,7 @@ Poffpool::Application.routes.draw do
 
   match '/contact' => 'pages#contact', :as => :contact
   match '/prizes' => 'pages#prizes', :as => :prizes
+  match '/guide' => 'pages#guide', :as => :guide
   resources :pages, :only => :index
   resources :players, :only => :show
   resources :entrants, :only => [:new, :index, :create, :show]

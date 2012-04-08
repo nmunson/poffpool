@@ -1,13 +1,16 @@
 namespace :nhl do
   task :populate_players => :environment do
+    injury_list = ENV['INJURIES'].split(",")
     ENV['PLAYOFF_TEAMS'].split(',').each do |team|
       @team = Team.find_by_shortname(team)
       nhl = NHL.new(ENV['SEASON'])
       resp = nhl.player_stats(team)
-      player_list = resp.parsed_response.select{|p| p["position"] != "G"}
+      player_list = resp.parsed_response.select{|p| p["position"] != "G"}.sort_by{|h| h[:points]}
       goalie_list = resp.parsed_response.select{|g| g["position"] == "G"}
 
-      player_list.sort_by{|h| h[:points]}.take(6).each do |player|
+      while @team.players.count != 6
+        player = player_list.shift
+        next if injury_list.include?(player["name"])
         @team.players.create!(:name => player["name"], :season_points => player["points"], :goalie => false)
       end
 
