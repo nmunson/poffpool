@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  validateEntries();
+
   $('#new_entrant').change(function() {
     validateEntries();
   });
