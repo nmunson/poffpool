@@ -2,7 +2,7 @@
   <% if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now %>
     <h1>The playoffs are back.</h1>
     <p>Welcome to the 2012 NHL Playoff Pool. All entries must be submitted online before 
-    <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %I:%M %p")%> and through this website.  Submitting entries past that time will not work, so please don't leave it until the last minute to submit.  When completing the form you must ensure that you have made arrangements for your entry fee to be paid.  If not, your name and entry will be removed from the pool.</p>
+    <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p")%> and through this website.  Submitting entries past that time will not work, so please don't leave it until the last minute to submit.  When completing the form you must ensure that you have made arrangements for your entry fee to be paid.  If not, your name and entry will be removed from the pool.</p>
     <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
   <% else %>
     <h1>Entry period has closed.</h1>
