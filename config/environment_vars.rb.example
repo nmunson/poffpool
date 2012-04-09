@@ -7,5 +7,5 @@ ENV['NHL_API'] = 'http://localhost:8081'
 ENV['WIN_MULTIPLIER'] = 2
 ENV['SHUTOUT_MULTIPLIER'] = 2
 ENV['SUBMISSION_DEADLINE'] = '2012-04-11 18:00:00'
-ENV['DEBUG'] = 'true'
-ENV['INJURIES'] = 'Jonathan Toews,Danny Briere,Daniel Sedin'
+ENV['DEBUG'] = 'true' # Show all page links and let them be viewable
+ENV['INJURIES'] = 'Jonathan Toews,Danny Briere,Daniel Sedin' # Don't include these players in the pool
