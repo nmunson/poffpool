@@ -6,7 +6,7 @@
     <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
   <% else %>
     <h1>Entry period has closed.</h1>
-    <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the rankings page updated.</p>
+    <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the <%= link_to "rankings page", entrants_path %> updated.</p>
   <% end %>
 </div>
 
