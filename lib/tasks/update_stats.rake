@@ -21,5 +21,9 @@ namespace :nhl do
       team.goalie.update_attributes(:goals => goalie_goals, :assists => goalie_assists,
         :wins => goalie_wins, :shutouts => goalie_shutouts)
     end
+
+    Entrant.all.sort_by{ |e| e.points }.each_with_index do |entrant, index|
+      entrant.rankings.create!(:date => Time.now, :rank => index + 1)
+    end
   end
 end

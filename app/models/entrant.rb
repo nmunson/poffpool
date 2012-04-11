@@ -11,6 +11,8 @@ class Entrant < ActiveRecord::Base
   has_many :picks
   has_many :players, :through => :picks
 
+  has_many :rankings
+
   validates :name, :presence   => true,
                    :uniqueness => { :case_sensitive => false },
                    :length => { :maximum => 25 }
@@ -19,10 +21,6 @@ class Entrant < ActiveRecord::Base
 
   validates :email, :presence => true,
                     :format => { :with => email_regex }
-
-  def self.by_season_points
-    all.sort_by{ |entrant| -entrant.players.sum('season_points') }
-  end
 
   def points
     self.players.sum('goals') + self.players.sum('assists') + 
