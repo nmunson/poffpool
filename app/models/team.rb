@@ -23,7 +23,7 @@ class Team < ActiveRecord::Base
   validates :shortname, :presence => true
 
   def goalie
-    players.select{ |p| p["goalie"] }
+    players.select{ |p| p["goalie"] }.first
   end
 
 end
