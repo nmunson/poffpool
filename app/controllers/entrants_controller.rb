@@ -4,7 +4,7 @@ class EntrantsController < ApplicationController
   before_filter :prevent_late_submissions, :only => [:new, :create]
 
   def index
-    @entrants = Entrant.all.sort_by{ |e| e.points }
+    @entrants = Entrant.all.sort_by{ |e| -e.points }
     respond_to do |format|
       format.html
       format.json { render_for_api :entrants, :json => @entrants, :root => :entrants}
