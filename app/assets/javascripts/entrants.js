@@ -5,7 +5,6 @@ $(document).ready(function() {
   $('#new_entrant').change(function() {
     validateEntries();
   });
-  
 });
 
 function validateEntries() {

@@ -1,9 +1,6 @@
 <div class="row">
-  <div class="span8">
-    <h1 class="page-header"><%= @entrant.name %></h1>
-  </div>
-  <div class="span4">
-    <h1 class="page-header">Points: <%= @entrant.points %></h1>
+  <div class="span12">
+    <h1 class="page-header"><%= @entrant.name %> (<%= @entrant.points %> points)</h1>
   </div>
 </div>
 <div class="row">
@@ -36,6 +33,36 @@
       <% end %>
     </table>     
     <hr />
+    <!--<h3 style="margin-bottom:10px;">Ranking Chart</h3>
+    <div id="rankings_chart" style="width: 100%; height: 350px;"></div>-->
     <%= link_to_function "Back", "history.back()", :class => 'btn' %>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    new Highcharts.Chart({
+      chart: { renderTo: 'rankings_chart' },
+      title: { text: null },
+      xAxis: { 
+        type: 'datetime'
+      },
+      yAxis: {
+        title: { text: 'Rank'}
+      },
+      tooltip: {
+        formatter: function () {
+          return Highcharts.dateFormat("%B %e %Y", this.x) + ': ' + this.y;
+        }
+      },    
+      series: [{
+        showInLegend: false,
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
+        data: <%= @entrant.rankings.collect{|e| e["rank"]}.inspect %>
+      }]
+    });  
+  });
+
+</script>

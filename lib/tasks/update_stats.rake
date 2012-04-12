@@ -1,9 +1,13 @@
 namespace :nhl do
   task :update_stats => :environment do
+    skipped_team_count = 0
     Team.all.select{|team| team.players.count > 0}.each do |team|
       nhl = NHL.new(ENV['SEASON'])
       resp = nhl.player_stats(team.shortname, true)
-      next if resp.code == 404 # stats not available
+      if resp.code == 404 # stats not available
+        skipped_team_count += 1
+        next
+      end
 
       goalie_wins = goalie_shutouts = goalie_goals = goalie_assists = 0
       resp.parsed_response.each do |player| 
@@ -22,8 +26,11 @@ namespace :nhl do
         :wins => goalie_wins, :shutouts => goalie_shutouts)
     end
 
-    Entrant.all.sort_by{ |e| e.points }.each_with_index do |entrant, index|
-      entrant.rankings.create!(:date => Time.now, :rank => index + 1)
+    # don't log rankings if no teams are reporting back statistics yet
+    unless skipped_team_count == Team.all.select{|team| team.players.count > 0}
+      Entrant.all.sort_by{ |e| e.points }.each_with_index do |entrant, index|  
+        entrant.rankings.create!(:date => Time.now, :rank => index + 1)
+      end
     end
   end
 end
