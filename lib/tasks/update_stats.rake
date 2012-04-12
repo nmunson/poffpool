@@ -28,7 +28,7 @@ namespace :nhl do
 
     # don't log rankings if no teams are reporting back statistics yet
     unless skipped_team_count == Team.all.select{|team| team.players.count > 0}
-      Entrant.all.sort_by{ |e| e.points }.each_with_index do |entrant, index|  
+      Entrant.all.sort_by{ |e| -e.points }.each_with_index do |entrant, index|  
         entrant.rankings.create!(:date => Time.now, :rank => index + 1)
       end
     end
