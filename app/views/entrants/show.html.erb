@@ -62,8 +62,8 @@
       series: [{
         showInLegend: false,
         pointInterval: <%= 1.day * 1000 %>,
-        pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,
-        data: <%= @entrant.rankings.collect{|e| e["rank"]}.inspect %>
+        pointStart: <%= (Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)') + 1.day).to_i * 1000 %>,
+        data: <%= @entrant.rankings.sort_by{|e| e["date"]}.collect{|e| e["rank"]}.inspect %>
       }]
     });  
   });
