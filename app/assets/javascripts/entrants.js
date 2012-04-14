@@ -8,10 +8,10 @@ $(document).ready(function() {
 
   $('#rankings-table .change').each(function() {
     if ($(this).html().indexOf('-') == -1) {
-      $(this).addClass('success');
+      $(this).html("<i class='icon-arrow-up'></i>" + $(this).html());
     }
     else {
-      $(this).addClass('error');  
+      $(this).html("<i class='icon-arrow-down'></i>" + $(this).html());
     }
 
   });

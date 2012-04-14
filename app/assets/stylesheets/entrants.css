@@ -5,3 +5,13 @@
 .success {
   color:green;
 }
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("../assets/glyphicons-halflings.png");
+}
+
+i {
+  padding-right:5px;
+  margin-top:1px;
+}
