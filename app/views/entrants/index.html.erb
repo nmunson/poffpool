@@ -8,12 +8,14 @@
     <table class="table table-striped">
       <thead>
         <th>Rank</th>
+        <th>Change</th>
         <th>Name</th>
         <th>Points</th>
       </thead>
       <% @entrants.each_with_index do |entrant, index| %>
         <tr>
           <td><%= index + 1 %></td>
+          <td><%= (index + 1) - entrant.rankings.sort_by{|r| r["date"]}.last["rank"] %></td>
           <td><%= link_to entrant.name, entrant %></td>
           <td><%= entrant.points %></td>
         </tr>
