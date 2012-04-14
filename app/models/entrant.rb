@@ -28,4 +28,13 @@ class Entrant < ActiveRecord::Base
       self.players.sum('wins') * Integer(ENV['WIN_MULTIPLIER'])
   end
 
+  def yesterdays_rank
+    sorted_rankings = rankings.sort_by{|r| r["date"]}
+    if sorted_rankings[-2].nil?
+      return 0
+    else
+      return sorted_rankings[-2]["rank"]
+    end
+  end
+
 end
