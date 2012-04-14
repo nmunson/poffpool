@@ -4,9 +4,13 @@
     <p>Welcome to the 2012 NHL Playoff Pool. All entries must be submitted online before 
     <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p")%> and through this website.  Submitting entries past that time will not work, so please don't leave it until the last minute to submit.  When completing the form you must ensure that you have made arrangements for your entry fee to be paid.  If not, your name and entry will be removed from the pool.</p>
     <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
-  <% else %>
+  <% elsif Time.parse(ENV['SUBMISSION_DEADLINE']) + 2.days > Time.now %>
     <h1>Entry period has closed.</h1>
     <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the <%= link_to "rankings page", entrants_path %> updated.</p>
+  <% else %>
+    <h1>The playoffs have begun!</h1>
+    <p>The pool is now officially live.  Check back daily for ranking changes and for new features across the site, as they will be added as the pool continues.</p>
+    <p><%= link_to "View Rankings &raquo;".html_safe, entrants_path, :class => 'btn btn-primary btn-large' %></p>
   <% end %>
 </div>
 
