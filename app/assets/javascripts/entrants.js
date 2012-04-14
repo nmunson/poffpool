@@ -5,6 +5,16 @@ $(document).ready(function() {
   $('#new_entrant').change(function() {
     validateEntries();
   });
+
+  $('#rankings-table .change').each(function() {
+    if ($(this).html().indexOf('-') == -1) {
+      $(this).addClass('success');
+    }
+    else {
+      $(this).addClass('error');  
+    }
+
+  });
 });
 
 function validateEntries() {
@@ -103,3 +113,4 @@ function checkMulliganMan() {
     $('#one-mulligan-man').removeClass('error').removeClass('success');
   }
 }
+
