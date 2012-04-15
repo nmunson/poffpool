@@ -37,4 +37,12 @@ class Entrant < ActiveRecord::Base
     end
   end
 
+  def todays_rank
+    rankings.last["rank"]
+  end
+
+  def rank_change
+    yesterdays_rank - todays_rank
+  end
+
 end

@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="span8">
+  <div class="span6">
     <table class="table table-striped" id="rankings-table">
       <thead>
         <th>Rank</th>
@@ -15,15 +15,30 @@
       <% @entrants.each_with_index do |entrant, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td class="change"><%= entrant.yesterdays_rank - (index + 1) %></td>
+          <td class="change"><%= entrant.rank_change %></td>
           <td><%= link_to entrant.name, entrant %></td>
           <td><%= entrant.points %></td>
         </tr>
       <% end %>
     </table>
   </div>
-  <div class="span4">
-    <h3>Updates</h3>
+  <div class="span5 offset1 sidebar">
+    <h3><i class="icon-refresh sidebar-icon"></i>Updates</h3>
     <p>Statistics are updated daily at 5 AM from NHL.com.</p>
+  </div>
+ <div class="span5 offset1 sidebar">
+    <h3><i class="icon-signal sidebar-icon"></i>Biggest Movers</h3>
+    <table class="table table-striped">
+      <thead>
+        <th>Change</th>
+        <th>Name</th>
+      </thead>
+      <% @top_movers.each do |entrant| %>
+        <tr>
+          <td><%= entrant.rank_change %></td>
+          <td><%= link_to entrant.name, entrant %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>
