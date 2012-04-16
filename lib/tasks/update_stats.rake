@@ -26,6 +26,16 @@ namespace :nhl do
         :wins => goalie_wins, :shutouts => goalie_shutouts)
     end
 
+    # check for team shutouts and add appropriately
+    unless ENV['TEAM_SHUTOUTS'].nil?
+      ENV['TEAM_SHUTOUTS'].split(",").each do |x|
+        team_id = Integer(x.split(":").first)
+        team_shutout_count = Integer(x.split(":").last)
+        team = Team.find(team_id)
+        team.goalie.update_attributes(:shutouts => team.goalie.shutouts + team_shutout_count)
+      end
+    end
+
     # don't log rankings if no teams are reporting back statistics yet
     unless skipped_team_count == Team.all.select{|team| team.players.count > 0}
       Entrant.all.sort_by{ |e| -e.points }.each_with_index do |entrant, index|  
