@@ -7,7 +7,10 @@ $(document).ready(function() {
   });
 
   $('#rankings-table .change').each(function() {
-    if ($(this).html().indexOf('-') == -1) {
+    if ($(this).html() == "0") {
+      $(this).html("<i class='icon-minus'></i>" + $(this).html());
+    }
+    else if ($(this).html().indexOf('-') == -1) {
       $(this).html("<i class='icon-arrow-up'></i>" + $(this).html());
     }
     else {
