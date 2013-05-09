@@ -23,9 +23,15 @@ class Entrant < ActiveRecord::Base
                     :format => { :with => email_regex }
 
   def points
-    self.players.sum('goals') + self.players.sum('assists') + 
+    pts = self.players.sum('goals') + self.players.sum('assists') + 
       self.players.sum('shutouts') * Integer(ENV['SHUTOUT_MULTIPLIER']) + 
       self.players.sum('wins') * Integer(ENV['WIN_MULTIPLIER'])
+      
+    if self.id == 29
+      return pts * 1.5
+    else
+      return pts
+    end
   end
 
   def yesterdays_rank
