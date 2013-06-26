@@ -8,8 +8,11 @@
     <h1>Entry period has closed.</h1>
     <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the <%= link_to "rankings page", entrants_path %> updated.</p>
   <% else %>
-    <h1>The playoffs have begun!</h1>
-    <p>The pool is now officially live.  Check back daily for ranking changes and for new features across the site, as they will be added as the pool continues.</p>
+    <h1>The playoffs are over!</h1>
+    <p>With the 2013 Stanley Cup awarded to the Chicago Blackhawks the end of the Playoff Pool has been reached. Congratulations to each of the entrants that have finished in the money – as per normal practice we will hold off disbursing the funds until the NHL has published their final statistics. This avoids any conflicts if there turns out to be any adjustments to player point totals. In most years the final updates are available within the week following the final game.
+    </p><p> 
+     For those entrants that are tied the prize money is rolled up and then split equally (i.e. two people tied in 3rd would split the 3rd and 4th place winnings).
+     Thanks everyone for participating in this year’s pool and I look forward to seeing you all again next year!</p>
     <p><%= link_to "View Rankings &raquo;".html_safe, entrants_path, :class => 'btn btn-primary btn-large' %></p>
   <% end %>
 </div>
