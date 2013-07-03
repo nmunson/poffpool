@@ -8,11 +8,17 @@
     <h1>Entry period has closed.</h1>
     <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the <%= link_to "rankings page", entrants_path %> updated.</p>
   <% else %>
-    <h1>The playoffs are over!</h1>
-    <p>With the 2013 Stanley Cup awarded to the Chicago Blackhawks the end of the Playoff Pool has been reached. Congratulations to each of the entrants that have finished in the money – as per normal practice we will hold off disbursing the funds until the NHL has published their final statistics. This avoids any conflicts if there turns out to be any adjustments to player point totals. In most years the final updates are available within the week following the final game.
-    </p><p> 
-     For those entrants that are tied the prize money is rolled up and then split equally (i.e. two people tied in 3rd would split the 3rd and 4th place winnings).
-     Thanks everyone for participating in this year’s pool and I look forward to seeing you all again next year!</p>
+    <h1>Congrats to the winners!</h1>
+    <p>We would like to congratulate each of the winners in this year’s pool. All statistics are final and winnings will be paid out. Thanks to everyone that participated this year and we look forward to seeing you all again next year. The winners are:</p>
+    <ul>
+      <li>1st: Mitch Jordan - $790</li>
+      <li>2nd: Bryan Martin (BMar) - $380</li>
+      <li>3rd (tie): Dingo - $97.50</li>
+      <li>3rd (tie): Pool Guru - $97.50</li>
+      <li>3rd (tie): Ur boy K Phair - $97.50</li>
+      <li>3rd (tie): Mike Barrett - $97.50</li>
+      <li>7th: Ron Wagnell - $20</li>
+    </ul>
     <p><%= link_to "View Rankings &raquo;".html_safe, entrants_path, :class => 'btn btn-primary btn-large' %></p>
   <% end %>
 </div>
