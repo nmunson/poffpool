@@ -33,8 +33,11 @@ class Entrant < ActiveRecord::Base
     goals + assists + (shutouts * shutout_mult) + (wins * win_mult)
   end
 
+  def rank_change
+    previous_rank - current_rank
+  end
+
   def previous_rank
-    sorted_rankings = rankings.sort_by{|r| r["date"]}
     if sorted_rankings[-2].nil?
       return 0
     else
@@ -43,15 +46,17 @@ class Entrant < ActiveRecord::Base
   end
 
   def current_rank
-    if rankings && rankings.last
-      rankings.last["rank"]
+    if sorted_rankings[-1].nil?
+      return 0
     else
-      0
+      return sorted_rankings[-1]["rank"]
     end
   end
 
-  def rank_change
-    previous_rank - current_rank
+  private
+
+  def sorted_rankings
+    rankings.sort_by{|r| r["date"]}
   end
 
 end

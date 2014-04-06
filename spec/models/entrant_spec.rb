@@ -62,7 +62,7 @@ describe Entrant do
       @entrant.should respond_to(:picks)
     end
   end
-  
+
   context "#points" do
     before(:each) do 
       @entrant = Entrant.create!(@attr)
@@ -126,7 +126,19 @@ describe Entrant do
   end
 
   context "#rank_change" do 
+    before(:each) do
+      @entrant = Entrant.create!(@attr)
+    end
 
+    it "should return 0 if there is no previous rank" do
+      @entrant.rank_change.should == 0
+    end
+
+    it "should return the difference between the current rank and previous rank" do
+      @entrant.rankings.create!(:date => Time.now, :rank => 15)
+      @entrant.rankings.create!(:date => Time.now - 1.day, :rank => 20)
+      @entrant.rank_change.should == 5
+    end    
   end
 
 end
