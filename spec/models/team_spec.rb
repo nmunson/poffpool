@@ -30,4 +30,13 @@ describe Team do
       no_shortname.should_not be_valid
     end
   end
+
+  context "#goalie" do
+    it "should return the first goalie on the team" do
+      team = Team.create!(@attr)
+      team.players.create!({:name => "examplegoalie", :goalie => true})
+      team.players.create!({:name => "examplegoalie2", :goalie => true})
+      team.goalie.name.should == "examplegoalie"
+    end
+  end
 end
