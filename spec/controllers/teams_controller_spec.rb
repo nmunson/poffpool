@@ -4,7 +4,7 @@ describe TeamsController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get :index, :format => :json 
+      get :index
       response.should be_success
     end
   end
@@ -21,7 +21,7 @@ describe TeamsController do
     let (:team) { Team.first }
 
     it "returns http success" do
-      get :show, :id => team, :format => :json
+      get :show, :id => team
       response.should be_success
     end
   end

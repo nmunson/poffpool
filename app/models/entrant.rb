@@ -1,13 +1,5 @@
 class Entrant < ActiveRecord::Base
 
-  acts_as_api
-
-  api_accessible :entrants do |template|
-    template.add :id
-    template.add :name
-    template.add :points
-  end
-
   has_many :picks
   has_many :players, :through => :picks
 
