@@ -23,14 +23,7 @@ class Entrant < ActiveRecord::Base
                     :format => { :with => email_regex }
 
   def points
-    goals = self.players.map{|p| p.goals}.sum
-    assists = self.players.map{|p| p.assists}.sum
-    shutouts = self.players.map{|p| p.shutouts}.sum
-    wins = self.players.map{|p| p.wins}.sum
-    shutout_mult = Integer(ENV['SHUTOUT_MULTIPLIER'])
-    win_mult = Integer(ENV['WIN_MULTIPLIER'])
-
-    goals + assists + (shutouts * shutout_mult) + (wins * win_mult)
+    players.map{|p| p.points}.sum
   end
 
   def rank_change
