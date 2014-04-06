@@ -1,4 +1,5 @@
 namespace :nhl do
+  desc "Update with latest NHL statistics"
   task :update_stats => :environment do
     skipped_team_count = 0
     Team.all.select{|team| team.players.count > 0}.each do |team|
