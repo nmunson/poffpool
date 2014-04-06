@@ -61,4 +61,29 @@ describe Entrant do
     @entrant.should respond_to(:picks)
   end
 
+  context "#points" do
+    before(:each) do 
+      @entrant = Entrant.create!(@attr)
+      player1 = @entrant.players.create!({
+        :name => "exampleplayer",
+        :team_id => 1
+      })
+      player2 = @entrant.players.create!({
+        :name => "exampleplayer2",
+        :team_id => 2
+      })
+      player1.goals = 1
+      player1.assists = 2
+      player2.wins = 1
+      player2.shutouts = 1
+      player2.assists = 1
+    end
+
+    it "returns the points count for the entrant" do
+      points_sum = 1 + 2 + (Integer(ENV['WIN_MULTIPLIER']) * 1) + 
+        (Integer(ENV['SHUTOUT_MULTIPLIER']) * 1) + 1
+      @entrant.points.should == points_sum
+    end
+  end
+
 end
