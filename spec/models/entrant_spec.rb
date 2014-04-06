@@ -10,57 +10,59 @@ describe Entrant do
     }
   end
 
-  it "should create a new instance given valid attributes" do
-    Entrant.create!(@attr)
-  end
+  context "attributes" do
+    it "should create a new instance given valid attributes" do
+      Entrant.create!(@attr)
+    end
 
-  it "should require a name" do
-    no_name_entrant = Entrant.new(@attr.merge(:name => ""))
-    no_name_entrant.should_not be_valid
-  end
+    it "should require a name" do
+      no_name_entrant = Entrant.new(@attr.merge(:name => ""))
+      no_name_entrant.should_not be_valid
+    end
 
-  it "should reject duplicate names" do
-    Entrant.create!(@attr)
-    duplicate_name_entrant = Entrant.new(@attr)
-    duplicate_name_entrant.should_not be_valid
-  end
+    it "should reject duplicate names" do
+      Entrant.create!(@attr)
+      duplicate_name_entrant = Entrant.new(@attr)
+      duplicate_name_entrant.should_not be_valid
+    end
 
-  it "should require an email address" do
-    no_email_entrant = Entrant.new(@attr.merge(:email => ""))
-    no_email_entrant.should_not be_valid
-  end
+    it "should require an email address" do
+      no_email_entrant = Entrant.new(@attr.merge(:email => ""))
+      no_email_entrant.should_not be_valid
+    end
 
-  it "should reject a name that is too long" do
-    long_email_entrant = Entrant.new(@attr.merge(:name => "a" * 30))
-    long_email_entrant.should_not be_valid
-  end
+    it "should reject a name that is too long" do
+      long_email_entrant = Entrant.new(@attr.merge(:name => "a" * 30))
+      long_email_entrant.should_not be_valid
+    end
 
-  it "should accept valid email addresses" do
-    addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
-    addresses.each do |address|
-      valid_email_entrant = Entrant.new(@attr.merge(:email => address))
-      valid_email_entrant.should be_valid
+    it "should accept valid email addresses" do
+      addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
+      addresses.each do |address|
+        valid_email_entrant = Entrant.new(@attr.merge(:email => address))
+        valid_email_entrant.should be_valid
+      end
+    end
+
+    it "should reject invalid email addresses" do
+      addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
+      addresses.each do |address|
+        invalid_email_entrant = Entrant.new(@attr.merge(:email => address))
+        invalid_email_entrant.should_not be_valid
+      end
+    end
+
+    it "should respond to players" do
+      @entrant = Entrant.create!(@attr)
+      @entrant.should respond_to(:players)
+    end
+
+    it "should respond to picks" do
+      @entrant = Entrant.create!(@attr)
+      @entrant.should respond_to(:picks)
     end
   end
-
-  it "should reject invalid email addresses" do
-    addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
-    addresses.each do |address|
-      invalid_email_entrant = Entrant.new(@attr.merge(:email => address))
-      invalid_email_entrant.should_not be_valid
-    end
-  end
-
-  it "should respond to players" do
-    @entrant = Entrant.create!(@attr)
-    @entrant.should respond_to(:players)
-  end
-
-  it "should respond to picks" do
-    @entrant = Entrant.create!(@attr)
-    @entrant.should respond_to(:picks)
-  end
-
+  
   context "#points" do
     before(:each) do 
       @entrant = Entrant.create!(@attr)
@@ -108,8 +110,19 @@ describe Entrant do
     end
   end
 
-  context "#todays_rank" do
+  context "#current_rank" do
+    before(:each) do
+      @entrant = Entrant.create!(@attr)
+    end
 
+    it "should return 0 if there are no rankings" do
+      @entrant.current_rank.should == 0
+    end
+
+    it "should return the current rank" do
+      @entrant.rankings.create!(:date => Time.now, :rank => 1)
+      @entrant.current_rank.should == 1
+    end
   end
 
   context "#rank_change" do 

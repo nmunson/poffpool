@@ -42,7 +42,7 @@ class Entrant < ActiveRecord::Base
     end
   end
 
-  def todays_rank
+  def current_rank
     if rankings && rankings.last
       rankings.last["rank"]
     else
@@ -51,7 +51,7 @@ class Entrant < ActiveRecord::Base
   end
 
   def rank_change
-    previous_rank - todays_rank
+    previous_rank - current_rank
   end
 
 end
