@@ -33,7 +33,7 @@ class Entrant < ActiveRecord::Base
     goals + assists + (shutouts * shutout_mult) + (wins * win_mult)
   end
 
-  def yesterdays_rank
+  def previous_rank
     sorted_rankings = rankings.sort_by{|r| r["date"]}
     if sorted_rankings[-2].nil?
       return 0
@@ -51,7 +51,7 @@ class Entrant < ActiveRecord::Base
   end
 
   def rank_change
-    yesterdays_rank - todays_rank
+    previous_rank - todays_rank
   end
 
 end

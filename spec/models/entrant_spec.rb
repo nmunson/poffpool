@@ -86,25 +86,25 @@ describe Entrant do
     end
   end
 
-  context "#yesterdays_rank" do
+  context "#previous_rank" do
     before(:each) do
       @entrant = Entrant.create!(@attr)
     end
 
     it "should return 0 if there are no rankings" do
-      @entrant.yesterdays_rank.should == 0
+      @entrant.previous_rank.should == 0
     end
 
-    it "should return 0 if there are no rankings for yesterday" do
+    it "should return 0 if there are no rankings for the previous day" do
       @entrant.rankings.create!(:date => Time.now, :rank => 1)
-      @entrant.yesterdays_rank.should == 0
+      @entrant.previous_rank.should == 0
     end
 
     it "should return the rank from the previous day" do
       @entrant.rankings.create!(:date => Time.now, :rank => 1)
       @entrant.rankings.create!(:date => Time.now - 1.day, :rank => 10)
       @entrant.rankings.create!(:date => Time.now - 2.days, :rank => 20)
-      @entrant.yesterdays_rank.should == 10
+      @entrant.previous_rank.should == 10
     end
   end
 
