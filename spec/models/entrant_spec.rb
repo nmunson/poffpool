@@ -86,4 +86,16 @@ describe Entrant do
     end
   end
 
+  context "#yesterdays_rank" do
+
+  end
+
+  context "#todays_rank" do
+
+  end
+
+  context "#rank_change" do 
+
+  end
+
 end
