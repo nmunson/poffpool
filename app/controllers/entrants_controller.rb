@@ -6,10 +6,6 @@ class EntrantsController < ApplicationController
   def index
     @entrants = Entrant.all.sort_by{ |e| -e.points }
     @top_movers = Entrant.all.sort_by { |e| -e.rank_change }.take(10)
-    respond_to do |format|
-      format.html
-      format.json { render_for_api :entrants, :json => @entrants, :root => :entrants}
-    end
   end
 
   def new
