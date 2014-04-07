@@ -9,7 +9,7 @@ class Entrant < ActiveRecord::Base
                    :uniqueness => { :case_sensitive => false },
                    :length => { :maximum => 25 }
 
-  validate :picks_count_within_bounds
+  validate :player_picks_are_valid
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -44,6 +44,37 @@ class Entrant < ActiveRecord::Base
 
   def sorted_rankings
     rankings.sort_by{|r| r["date"]}
+  end
+
+  def player_picks_are_valid
+    #three_players_per_main_five_columns
+    single_goalie
+    #single_mulligan_man
+    #mulligan_man_different_team_than_goalie
+    #one_player_per_team
+    picks_count_within_bounds
+  end
+
+  def three_players_per_main_five_columns
+    errors.add(:picks, "did not have three players for each of the five main columns")
+  end
+
+  def single_goalie
+    if players.map{|p| p.goalie}.count > 1
+      errors.add(:picks, "has too many goalies")
+    end
+  end
+
+  def single_mulligan_man
+    errors.add(:picks, "did not have a single mulligan man")
+  end
+
+  def mulligan_man_different_team_than_goalie
+    errors.add(:picks, "did not choose a mulligan man from a different team than the goalie")
+  end
+
+  def one_player_per_team
+    errors.add(:picks, "did not have a single player per team, excluding the mulligan man")
   end
 
   def picks_count_within_bounds
