@@ -61,6 +61,12 @@ describe Entrant do
       @entrant = Entrant.create!(@attr)
       @entrant.should respond_to(:picks)
     end
+
+    it "should allow 0 picks" 
+
+    it "should allow 17 picks"
+
+    it "should not allow a picks count that is not zero or 17"
   end
 
   context "#points" do
