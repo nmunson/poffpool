@@ -62,11 +62,33 @@ describe Entrant do
       @entrant.should respond_to(:picks)
     end
 
-    it "should allow 0 picks" 
+    context "#picks validation" do
+      it "should allow three players to be picked for each of the five main columns"
 
-    it "should allow 17 picks"
+      it "should disallow more or less than threen players to be picked for the five main columns"
 
-    it "should not allow a picks count that is not zero or 17"
+      it "should allow a single goalie"
+
+      it "should disallow more than one goalie"
+
+      it "should allow a single mulligan man" 
+
+      it "should disallow more than one mulligan man"
+
+      it "should allow a mulligan man pick to be of a different team than the goalie"
+
+      it "should disallow a mulligan man pick to be of the same team as the goalie"
+
+      it "should allow one pick per team, excluding the mulligan man"
+
+      it "should disallow more than one pick per team, excluding the mulligan man"
+      
+      it "should allow 0 picks" 
+
+      it "should allow 17 picks"
+
+      it "should not allow a picks count that is not zero or 17"
+    end
   end
 
   context "#points" do
