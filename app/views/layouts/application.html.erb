@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NHL Playoff Pool 2013</title>
+  <title>NHL Playoff Pool <%= Date.today.year %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -15,7 +15,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <%= link_to "NHL Playoff Pool 2013", root_url, :class => 'brand' %>
+        <%= link_to "NHL Playoff Pool #{Date.today.year}", root_url, :class => 'brand' %>
         <div class="nav-collapse">
           <ul class="nav">
             <% if controller?("pages") && action?("index") %>
@@ -73,7 +73,7 @@
   <hr />
 
   <footer>
-    <p>&copy; Nicholas Munson 2013, <a href="https://github.com/nmunson/poffpool">fork and contribute on Github</a>.
+    <p>&copy; Nicholas Munson 2011 - <%= Date.today.year %>, <a href="https://github.com/nmunson/poffpool">fork and contribute on Github</a>.
       Powered by <%= link_to "Rails", "http://rubyonrails.org/" %>, <%= link_to "Node.js", "http://nodejs.org/" %> and <%= link_to "Redis", "http://redis.io/" %>.</p>
   </footer>
 </div>
