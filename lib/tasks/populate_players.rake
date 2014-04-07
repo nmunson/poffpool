@@ -1,4 +1,5 @@
 namespace :nhl do
+  desc "Fill player data for playoff teams"
   task :populate_players => :environment do
     injury_list = ENV['INJURIES'].split(",")
     ENV['PLAYOFF_TEAMS'].split(',').each do |team|

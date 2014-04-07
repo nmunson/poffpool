@@ -1,4 +1,5 @@
 namespace :nhl do
+  desc "Fill the database with all NHL teams"
   task :populate_teams => :environment do
     teams = [
       { "name" => "New Jersey Devils", "shortname" => "devils" },  
