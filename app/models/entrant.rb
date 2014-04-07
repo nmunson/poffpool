@@ -9,6 +9,8 @@ class Entrant < ActiveRecord::Base
                    :uniqueness => { :case_sensitive => false },
                    :length => { :maximum => 25 }
 
+  validate :picks_count_within_bounds
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence => true,
@@ -42,6 +44,13 @@ class Entrant < ActiveRecord::Base
 
   def sorted_rankings
     rankings.sort_by{|r| r["date"]}
+  end
+
+  def picks_count_within_bounds
+    player_count = 5 * 3 + 1 + 1 # 3 per five columns, one goalie, one mulligan man
+    if players.count != player_count && players.count > 0
+      errors.add(:picks, "count must be #{player_count}") 
+    end
   end
 
 end
