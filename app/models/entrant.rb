@@ -48,7 +48,7 @@ class Entrant < ActiveRecord::Base
 
   def picks_count_within_bounds
     player_count = 5 * 3 + 1 + 1 # 3 per five columns, one goalie, one mulligan man
-    if players.count != player_count && players.count > 0
+    if players.count != player_count && players.count > 02
       errors.add(:picks, "count must be #{player_count}") 
     end
   end
