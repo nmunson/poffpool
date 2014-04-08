@@ -12,7 +12,11 @@ namespace :nhl do
       while @team.players.count != 6
         player = player_list.shift
         next if injury_list.include?(player["name"])
-        @team.players.create!(:name => player["name"], :season_points => player["points"], :goalie => false)
+        @team.players.create!(
+          :name => player["name"], 
+          :season_points => player["points"], 
+          :goalie => false
+        )
       end
 
       # Goalies are referenced by the top two goalies on the team, but their points count always comes from
@@ -24,7 +28,11 @@ namespace :nhl do
           (goalie["shutouts"] * Integer(ENV['SHUTOUT_MULTIPLIER'])) + goalie["goals"] + goalie["assists"]
         goalie_names << goalie["name"] 
       end
-      @team.players.create!(:name => goalie_names.take(2).join("/"), :season_points => goalie_season_points, :goalie => true)
+      @team.players.create!(
+        :name => goalie_names.take(2).join("/"), 
+        :season_points => goalie_season_points, 
+        :goalie => true
+      )
     end
   end
 end
