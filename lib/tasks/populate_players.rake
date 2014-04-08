@@ -7,7 +7,7 @@ namespace :nhl do
       nhl = NHL.new(ENV['SEASON'])
       resp = nhl.player_stats(team)
       player_list = resp.parsed_response.select{|p| p["position"] != "G"}.sort_by{|h| h[:points]}
-      goalie_list = resp.parsed_response.select{|g| g["position"] == "G"}
+      goalie_list = resp.parsed_response.select{|g| g["position"] == "G"}.sort_by{|h| h[:games_played_in]}
 
       while @team.players.count != 6
         player = player_list.shift
