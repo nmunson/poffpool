@@ -9,12 +9,21 @@ namespace :nhl do
       player_list = resp.parsed_response.select{|p| p["position"] != "G"}.sort_by{|h| h[:points]}
 
       while @team.players.count != 6
+        index = @team.players.count + 1
         player = player_list.shift
         next if injury_list.include?(player["name"])
+        
+        position = ""
+        if index <= 5
+          position = "col#{index}"
+        else
+          position = "mulligan"
+        end
+
         @team.players.create!(
           :name => player["name"], 
           :season_points => player["points"], 
-          :goalie => false
+          :position => position
         )
       end
 
@@ -31,7 +40,7 @@ namespace :nhl do
       @team.players.create!(
         :name => goalie_names.take(2).join("/"), 
         :season_points => goalie_season_points, 
-        :goalie => true
+        :position => "goalie"
       )
     end
   end
