@@ -6,7 +6,7 @@ describe Player do
     @attr = {
       :name => "exampleplayer",
       :team_id => 1,
-      :position => "column1"
+      :position => "col1"
     }
   end
 
@@ -75,6 +75,30 @@ describe Player do
       @player.shutouts = 2
       @player.wins = 1
       @player.points.should == 3 + 2 + 2 * shutout_multiplier + 1 * win_multiplier
+    end
+  end
+
+  context "#goalie?" do
+    it "should return true for goalies" do
+      goalie = Player.create!(@attr.merge({:position => "goalie" }))
+      goalie.goalie?.should == true
+    end
+
+    it "should return false for non-goalies" do
+      non_goalie = Player.create!(@attr.merge({:position => "col4" }))
+      non_goalie.goalie?.should == false
+    end
+  end
+
+  context "#mulligan?" do
+    it "should return true for mulligan man players" do
+      mulligan = Player.create!(@attr.merge({:position => "mulligan" }))
+      mulligan.mulligan?.should == true
+    end
+
+    it "should return false for non-mulligans" do
+      non_mulligan = Player.create!(@attr.merge({:position => "col4" }))
+      non_mulligan.mulligan?.should == false
     end
   end
 end

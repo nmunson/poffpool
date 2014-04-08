@@ -97,12 +97,12 @@ describe Entrant do
       player1 = @entrant.players.create!({
         :name => "exampleplayer",
         :team_id => 1,
-        :position => "column1"
+        :position => "col1"
       })
       player2 = @entrant.players.create!({
         :name => "exampleplayer2",
         :team_id => 2,
-        :position => "column1"
+        :position => "col1"
       })
       player1.goals = 1
       player1.assists = 2

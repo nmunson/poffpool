@@ -60,8 +60,8 @@ class Entrant < ActiveRecord::Base
   end
 
   def single_goalie
-    if players.map{|p| p.goalie}.count > 1
-      errors.add(:picks, "has too many goalies")
+    if players.map{|p| p.goalie?}.count > 1
+      errors.add(:picks, "only one goalie pick allowed")
     end
   end
 
@@ -79,7 +79,7 @@ class Entrant < ActiveRecord::Base
 
   def picks_count_within_bounds
     player_count = 5 * 3 + 1 + 1 # 3 per five columns, one goalie, one mulligan man
-    if players.count != player_count && players.count > 02
+    if players.count != player_count && players.count > 0
       errors.add(:picks, "count must be #{player_count}") 
     end
   end

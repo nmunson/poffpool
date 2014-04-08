@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
 
   # All stats for the team goalie will be logged under this player
   def goalie
-    players.select{ |p| p["goalie"] }.first
+    players.select{ |p| p.goalie? }.first
   end
 
 end
