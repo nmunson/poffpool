@@ -5,7 +5,8 @@ describe Player do
   before(:each) do
     @attr = {
       :name => "exampleplayer",
-      :team_id => 1
+      :team_id => 1,
+      :position => "column1"
     }
   end
 
@@ -28,6 +29,21 @@ describe Player do
     it "should require a team_id" do
       no_team_player = Player.new(@attr.merge({:team_id => ""}))
       no_team_player.should_not be_valid
+    end
+
+    it "should require a position" do
+      no_position_player = Player.new(@attr.merge({:position => ""}))
+      no_position_player.should_not be_valid
+    end
+
+    it "should deny invalid positions" do
+      invalid_position_player = Player.new(@attr.merge({:position => "point-guard"}))
+      invalid_position_player.should_not be_valid
+    end
+
+    it "should allow valid positions" do
+      valid_position_player = Player.new(@attr.merge({:position => "mulligan"}))
+      valid_position_player.should be_valid
     end
 
     it "should respond to picks" do

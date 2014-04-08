@@ -6,7 +6,8 @@ describe PlayersController do
     before(:each) do
       @attr = {
         :name => "exampleplayer",
-        :team_id => 1
+        :team_id => 1,
+        :position => "goalie"
       }
       Player.create(@attr)
     end
