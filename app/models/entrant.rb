@@ -50,14 +50,15 @@ class Entrant < ActiveRecord::Base
     three_players_per_main_five_columns
     single_goalie
     single_mulligan_man
-    mulligan_man_different_team_than_goalie
+    #mulligan_man_different_team_than_goalie
     #one_player_per_team
     picks_count_within_bounds
   end
 
   def three_players_per_main_five_columns
     %w{col1 col2 col3 col4 col5}.each do |col|
-      if players.select {|p| p["position"] == col}.count != 3
+      column_count = players.select {|p| p["position"] == col}.count
+      if column_count > 0 && column_count != 3
         errors.add(:picks, "did not have three players for each of the five main columns")
       end
     end

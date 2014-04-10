@@ -34,8 +34,8 @@ describe Team do
   context "#goalie" do
     it "should return the first goalie on the team" do
       team = Team.create!(@attr)
-      team.players.create!({:name => "examplegoalie", :goalie => true, :position => "goalie"})
-      team.players.create!({:name => "examplegoalie2", :goalie => true, :position => "goalie"})
+      team.players.create!({:name => "examplegoalie", :position => "goalie"})
+      team.players.create!({:name => "examplegoalie2", :position => "goalie"})
       team.goalie.name.should == "examplegoalie"
     end
   end
