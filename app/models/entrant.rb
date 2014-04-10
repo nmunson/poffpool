@@ -47,30 +47,39 @@ class Entrant < ActiveRecord::Base
   end
 
   def player_picks_are_valid
-    #three_players_per_main_five_columns
+    three_players_per_main_five_columns
     single_goalie
-    #single_mulligan_man
-    #mulligan_man_different_team_than_goalie
+    single_mulligan_man
+    mulligan_man_different_team_than_goalie
     #one_player_per_team
     picks_count_within_bounds
   end
 
   def three_players_per_main_five_columns
-    errors.add(:picks, "did not have three players for each of the five main columns")
+    %w{col1 col2 col3 col4 col5}.each do |col|
+      if players.select {|p| p["position"] == col}.count != 3
+        errors.add(:picks, "did not have three players for each of the five main columns")
+      end
+    end
   end
 
   def single_goalie
-    if players.map{|p| p.goalie?}.count > 1
+    if players.select {|p| p["position"] == "goalie"}.count > 1
       errors.add(:picks, "only one goalie pick allowed")
     end
   end
 
   def single_mulligan_man
-    errors.add(:picks, "did not have a single mulligan man")
+    if players.select {|p| p["position"] == "mulligan"}.count > 1
+      errors.add(:picks, "did not have a single mulligan man")
+    end
   end
 
   def mulligan_man_different_team_than_goalie
-    errors.add(:picks, "did not choose a mulligan man from a different team than the goalie")
+    two_players = players.select {|p| p["position"] == "mulligan" || p["position"] == "goalie"}
+    if two_players.first.team == two_players.last.team
+      errors.add(:picks, "did not choose a mulligan man from a different team than the goalie")
+    end
   end
 
   def one_player_per_team
