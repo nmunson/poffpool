@@ -2448,6 +2448,7 @@ input[type="submit"].btn.btn-mini {
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #468847;
+  padding:75px 50px 75px 50px;
 }
 .alert-danger,
 .alert-error {
