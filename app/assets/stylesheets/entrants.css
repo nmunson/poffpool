@@ -1,9 +1,16 @@
+#entry-check {
+  margin-bottom:25px;
+  font-size: 16px;
+}
+
 .error {
   color:red;
+  font-weight:bold;
 }
 
 .success {
   color:green;
+  font-weight:bold;
 }
 
 [class^="icon-"],
