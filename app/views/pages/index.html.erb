@@ -1,8 +1,12 @@
 <div class="hero-unit">
   <% if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now %>
     <h1>The playoffs are back!</h1>
-    <p>Welcome to the 2013 NHL Playoff Pool. All entries must be submitted online before 
-    <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p")%> through this website.  Submitting entries past that time are blocked from processing, so please don't leave it until the last minute to submit.  When completing the form you must ensure that you have made arrangements for your entry fee to be paid.  If not, your name and entry will be removed from the pool.</p>
+    <p>Welcome to the <%= Time.now.year %> NHL Playoff Pool. All entries must be submitted 
+    online before <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p")%> 
+    through this website.  The submission of entries past that time are blocked from processing, 
+    so please do not leave it until the last minute to submit.  When completing the entry you must 
+    ensure that you have made arrangements for your entry fee to be paid.  If not, your name and 
+    entry will be removed from the pool.</p>
     <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
   <% elsif Time.parse(ENV['SUBMISSION_DEADLINE']) + 2.days > Time.now %>
     <h1>Entry period has closed.</h1>
@@ -26,8 +30,8 @@
 <div class="row">
   <div class="span4">
     <h2>Prizes</h2>
-     <p>Prize money has been determined, please visit the 
-     <%= link_to "prize page", prizes_path %>.</p>
+     <p>Prizes are dependent on the amount of entries in the pool.  They will be announced once
+     all entries have been validated and paid for.</p>
   </div>
   <div class="span4">
     <h2>Updates</h2>
