@@ -32,10 +32,11 @@
   <div class="span4">
     <h2>Updates</h2>
     <p>The site will pull updates from NHL.com daily at 5 AM for all players.  
-    If you see any inconsistencies with points, please contact me.</p>
+    If you see any inconsistencies with points, please contact me.
+    Please note stats and rankings will be published as soon as NHL.com begins reporting them.</p>
  </div>
   <div class="span4">
     <h2>Injuries</h2>
-    <p>We have removed Dany Heatley and Sidney Crosby from the available pool of players due to injuries.  However, we suggest you double check the status of all your picks before submitting.</p>
+    <p>We have removed <%= @injuries.join(", ") %> from the available pool of players due to injuries.  However, we suggest you double check the status of all your picks before submitting.</p>
   </div>
 </div>
