@@ -19,12 +19,12 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'debugger'
 end
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
   gem "json_spec"
+  gem 'debugger'
 end
 
 gem 'jquery-rails'
