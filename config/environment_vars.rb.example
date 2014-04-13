@@ -10,3 +10,4 @@ ENV['SUBMISSION_DEADLINE'] = '2012-04-11 18:00:00'
 ENV['DEBUG'] = 'true' # Show all page links and let them be viewable
 ENV['INJURIES'] = 'Jonathan Toews,Danny Briere,Daniel Sedin' # Don't include these players in the pool
 ENV['TEAM_SHUTOUTS'] = '1:1,6:1' # For extra shutouts when a single goalie didn't play the full 60 minutes, but the team still got a shutout.  team_id:extra_shutout_count
+ENV['ADMIN_PASSWORD'] = 'password' # Show all entrants

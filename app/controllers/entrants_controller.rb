@@ -1,7 +1,8 @@
 class EntrantsController < ApplicationController
 
-  skip_before_filter :entry_mode_check, :only => [:new, :create]
+  skip_before_filter :entry_mode_check, :only => [:new, :create, :list]
   before_filter :prevent_late_submissions, :only => [:new, :create]
+  before_filter :authenticate_admin, :only => [:list]
 
   def index
     @entrants = Entrant.all.sort_by{ |e| -e.points }
@@ -22,6 +23,10 @@ class EntrantsController < ApplicationController
     end
   end
 
+  def list
+    @entrants = Entrant.all.sort_by{|e| e.created_at}.reverse
+  end
+
   def show
     @entrant = Entrant.find(params[:id])
   end
@@ -30,6 +35,12 @@ class EntrantsController < ApplicationController
 
   def prevent_late_submissions
     redirect_to root_url if Time.parse(ENV['SUBMISSION_DEADLINE']) < Time.now
+  end
+
+  def authenticate_admin
+    authenticate_or_request_with_http_basic('Administration') do |username, password|
+      username == 'admin' && password == ENV['ADMIN_PASSWORD']
+    end
   end
 
 end

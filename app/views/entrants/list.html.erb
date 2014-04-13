@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="span12">
+    <h1 class="page-header">Entries (<%= @entrants.count %>)</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>Submission Time</th>
+      </thead>
+      <% @entrants.each do |entrant| %>
+        <tr>
+          <td><%= entrant.name %></td>
+          <td><%= entrant.email %></td>
+          <td><%= entrant.company %></td>
+          <td><%= entrant.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
