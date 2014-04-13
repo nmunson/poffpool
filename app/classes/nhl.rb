@@ -44,7 +44,7 @@ class NHL
 
   def create_team_players(team)
     team = Team.find_by_shortname(team)
-    resp = player_stats(team)
+    resp = player_stats(team.shortname)
     player_list = resp.parsed_response.select{|p| p["position"] != "G"}.sort_by{|h| h[:points]}
 
     while team.players.count != 6
@@ -69,7 +69,7 @@ class NHL
 
   def create_team_goalies(team)
     team = Team.find_by_shortname(team)
-    resp = player_stats(team)
+    resp = player_stats(team.shortname)
 
     # Goalies are referenced by the top two goalies on the team, but their points count always comes from
     # any goalie playing for the team.  Wins and shutouts count for extra points based on the multipliers.
