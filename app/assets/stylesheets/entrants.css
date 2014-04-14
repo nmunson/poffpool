@@ -6,13 +6,13 @@
 }
 
 .error {
-  color:red;
-  font-weight:bold;
+  color:white;
+  background-color:red;
 }
 
 .success {
-  color:green;
-  font-weight:bold;
+  color:white;
+  background-color:green;
 }
 
 [class^="icon-"],
