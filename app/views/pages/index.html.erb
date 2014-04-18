@@ -1,5 +1,5 @@
 <div class="hero-unit">
-  <% if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now %> 
+  <% if @pool_status == 'accepting_entries' %>
     <h1>The playoffs are back!</h1>
     <p>Welcome to the <%= Time.now.year %> NHL Playoff Pool. All entries must be submitted 
     online before <%= Time.parse(ENV['SUBMISSION_DEADLINE']).in_time_zone('Eastern Time (US & Canada)').strftime("%B %-d, %Y at %l:%M %p")%> 
@@ -8,13 +8,17 @@
     ensure that you have made arrangements for your entry fee to be paid.  If not, your name and 
     entry will be removed from the pool.</p>
     <p><%= link_to "Submit Entry &raquo;".html_safe, new_entrant_path, :class => 'btn btn-primary btn-large' %></p>
-  <% elsif Time.parse(ENV['SUBMISSION_DEADLINE']) + 2.days > Time.now %>
+  <% elsif @pool_status == 'validating_entries' %>
     <h1>Entry period has closed.</h1>
     <p>We will now be validating all entries.  Feel free to browse the site and see other people's picks.  Once NHL.com begins updating playoff statistics, you'll see the <%= link_to "rankings page", entrants_path %> updated.</p>
-  <% else %>
+  <% elsif @pool_status == 'pool_active' %>
     <h1>Good luck!</h1>
     <p>Thanks for entering the playoff pool for 2014 and good luck to everyone.</p>
     <p><%= link_to "View Rankings &raquo;".html_safe, entrants_path, :class => 'btn btn-primary btn-large' %></p>
+  <% elsif @pool_status == 'validating_winners' %>
+
+  <% elsif @pool_status == 'pool_finished' %>
+
   <% end %>
 </div>
 
