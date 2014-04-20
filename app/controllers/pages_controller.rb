@@ -25,6 +25,24 @@ class PagesController < ApplicationController
       "Prizes are dependent on the amount of entries in the pool. "\
       "They will be announced once all entries have been validated and paid for."
     end
+
+    @updates = "The site will pull updates from NHL.com daily at 5 AM for all players. "\
+      "If you see any inconsistencies with points, please contact me. "
+    if @pool_status == 'accepting_entries' or @pool_status == 'validating_entries'
+      @updates += "Please note stats and rankings will be published as soon as NHL.com begins reporting them."
+    end
+
+    @injuries = ""
+    if ENV['INJURIES']
+      @injuries = "We have removed #{ENV['INJURIES'].split(',').join(', ')} "
+      @injuries += "from the available pool of players due to injuries."
+    else
+      @injuries = "There were no players removed from the pool due to injuries this year."
+    end
+
+    if @pool_status == 'accepting_entries' or @pool_status == 'validating_entries'
+      @injuries += "We suggest you double check the status of all your picks before submitting."
+    end
   end
 
   def prizes
