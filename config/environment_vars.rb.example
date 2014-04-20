@@ -13,3 +13,4 @@ ENV['TEAM_SHUTOUTS'] = '1:1,6:1' # For extra shutouts when a single goalie didn'
 ENV['ADMIN_PASSWORD'] = 'password' # Show all entrants
 ENV['GAMES_FINISHED'] = 'false' # set to true when all games finished playing
 ENV['WINNERS_DECIDED'] = 'false' # set to true when all winners validated
+ENV['PRIZE_MONEY'] = '500,250,150,80,20' # set when prize money breakdown is decided

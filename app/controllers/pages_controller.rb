@@ -17,9 +17,27 @@ class PagesController < ApplicationController
     else
       'pool_active'
     end
+
+    @prize_money = if ENV['PRIZE_MONEY']
+      "The prize money winnings have been determined. "\
+      "See more information on the #{view_context.link_to "Prizes", prizes_path} page."
+    else
+      "Prizes are dependent on the amount of entries in the pool. "\
+      "They will be announced once all entries have been validated and paid for."
+    end
   end
 
   def prizes
+    if ENV['PRIZE_MONEY']
+      @prize_money = "The prize money breakdown is as follows:" 
+      @prize_money += "<ol>"
+      ENV['PRIZE_MONEY'].split(',').each do |prize|
+        @prize_money += "<li>$#{prize}</li>"
+      end
+      @prize_money += "</ol>"
+    else
+      @prize_money = 'Prizes have yet to be determined.'
+    end
   end
 
   def contact
