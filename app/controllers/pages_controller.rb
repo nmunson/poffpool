@@ -3,8 +3,6 @@ class PagesController < ApplicationController
   skip_before_filter :entry_mode_check, :only => [:index, :guide]
 
   def index
-    @injuries = ENV['INJURIES'].split(",")
-
     # choose what status the pool is in
     @pool_status = if Time.parse(ENV['SUBMISSION_DEADLINE']) > Time.now
       'accepting_entries'
